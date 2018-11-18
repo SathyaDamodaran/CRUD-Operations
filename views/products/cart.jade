@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+      
+   if deletemsg
+      p.deletemsg=deletemsg
+   h1.header Cart
+   table.table.table-bordered
+       tr.row-heading
+           td ID
+           td TITLE
+           td PRICE
+           td STOCK
+           td QUANTITY
+           td REMOVE 
+       if cartMsg
+           p.cartMsg=cartMsg   
+        each cartitems in cart
+            tr
+                td=cartitems.id
+                td=cartitems.title
+                td=cartitems.price
+                if(cartitems.stock == 0)
+                    td NO STOCK
+                else
+                    td=cartitems.stock   
+                td=cartitems.quantity      
+                td
+                    a(href=`/products/remove/${cartitems.id}`).btn.btn-danger Remove    
+                   
+                
+                
